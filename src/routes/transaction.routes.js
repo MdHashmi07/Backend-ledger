@@ -5,7 +5,18 @@ const transactionController = require("../controller/transaction.controller");
 
 const transactionRoutes = Router();
 
+/**
+ * - POST /api/transactions/
+ *  - Create a new transaction
+ */
 transactionRoutes.post("/", authMiddleware.authMiddleware, transactionController.createTransaction);
+
+/**
+ * - POST /api/transactions/system/initial-funds
+ * - Create intial funds transaction  from system user
+ */
+
+transactionRoutes.post("/system/initial-funds", authMiddleware.authSystemMiddleware, transactionController.createInitialFundsTransaction)
 
 module.exports = transactionRoutes;
 
